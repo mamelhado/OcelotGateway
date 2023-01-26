@@ -35,3 +35,14 @@ services:
       - "51448:443"
     volumes:
       - ~/.aspnet/https:/https:ro
+
+  identity:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a97b95fb
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - "59960:443"
+    volumes:
+      - ~/.aspnet/https:/https:ro
