@@ -1,6 +1,39 @@
 {
   "Routes": [
     {
+      "DownstreamPathTemplate": "/api/Token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 59960
+        }
+      ],
+      "UpstreamPathTemplate": "/Token",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/WeatherForecast",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "host.docker.internal",
+          "Port": 59960
+        }
+      ],
+      "UpstreamPathTemplate": "/WeatherForecast",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "OPTIONS" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "admin"
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
       "DownstreamPathTemplate": "/api/Catalogo",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -28,6 +61,7 @@
     }
   ],
   "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
     "BaseUrl": "https://host.docker.internal:59963"
   }
 }
